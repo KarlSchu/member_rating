@@ -17,8 +17,16 @@ Expected content of `nachwahl_data`:
 Run the script with the following command:
 
 ```bash
-python main.py mitglieder_table.xlsx
+python main.py [mitglieder_table.xlsx]
 ```
+The `mitglieder_table.xlsx` argument is optional. If not provided, the script will look for `../nachwahl_data/mitglieder.xlsx` or `../nachwahl_data/mitglieder.tsv`.
+
+The result file will be saved in the same directory as the input file:
+
+- `candidates_<DATE>.md`
+- `candidates_<DATE>.pdf`
+
+with <DATE> being the current date in `YYYY-MM-DD` format.
 
 ## Requirements
 

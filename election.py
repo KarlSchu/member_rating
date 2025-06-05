@@ -63,7 +63,7 @@ def read_election_data_from_exls(file_path):
     """
     global excluded_members
     members = {}
-    data = pd.read_excel(file_path, sheet_name=1, header=0)
+    data = pd.read_excel(file_path, sheet_name=0, header=0)
 
     data.fillna(0, inplace=True)  # fill NaN values with empty strings
     data.columns = data.columns.str.strip()
@@ -76,7 +76,6 @@ def read_election_data_from_exls(file_path):
             continue
         adr = row["Grundstück"].strip()
         street = adr.strip().split(" ")[0]
-        # number = int(adr.strip().split(' ')[1].strip())
         number = adr.strip().split(" ")[1].strip()
         key = f"{street} {number}"
         ext = ""
@@ -188,7 +187,7 @@ def main(data_file):
     for member, data in candidates:
         namen = f'{data['Nachname'].strip()}, {data["Vorname"].strip()}'
         parzelle = f"{data['Parzellen-Nr.']}".strip()
-        results += f"|{member:20}|{parzelle:9}|{namen:42}|{data['Zuzug']:2}|{data['Aktivjahre gesamt']:3.0f}| {data['Aktiver Vorstand']:1}| {data['Altersbonus']:1}| {data['Fitnessbonus']:1.0f}| {data['Ausschluss']:1}|{data['Rating']:2.0f}|\n"
+        results += f"|{member:20}|{parzelle:9}|{namen:42}|{data['Zuzug']:2}|{data['Aktivjahre gesamt']:3.0f}| {data['Aktiver Vorstand']:1}| {data['Altersbonus']:1}| {data['Fitnessbonus']:1}| {data['Ausschluss']:1}|{data['Rating']:2.0f}|\n"
 
     results += '\n<p class="pagebreak" />\n\n'
     results += f"#### Nichtberücksichtigte Mitglieder und aktiver Vorstand ({len(excluded_members)})\n\n"
@@ -200,7 +199,7 @@ def main(data_file):
     for data in excluded_members_sorted:
         namen = f'{data['Nachname'].strip()}, {data["Vorname"].strip()}'
         parzelle = f"{data['Parzellen-Nr.']}".strip()
-        results += f"|{data['Grundstück']:20}|{parzelle:9}|{namen:42}|{data['Zuzug']:2}|{data['Aktivjahre gesamt']:3.0f}| {data['Aktiver Vorstand']:1}| {data['Altersbonus']:1}| {data['Fitnessbonus']:1.0f}| {data['Ausschluss']:1}|\n"
+        results += f"|{data['Grundstück']:20}|{parzelle:9}|{namen:42}|{data['Zuzug']:2}|{data['Aktivjahre gesamt']:3.0f}| {data['Aktiver Vorstand']:1}| {data['Altersbonus']:1}| {data['Fitnessbonus']:1}| {data['Ausschluss']:1}|\n"
     results = results.replace(" 0|", "  |")
     with open(os.path.join(out_path, out_md), "w", encoding="UTF8") as f:
         f.write(results)
