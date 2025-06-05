@@ -1,0 +1,111 @@
+* {
+    font-family: Arial, sans-serif;
+    /* font-size: 100%; */
+    font-size: 16px;
+    margin: 3px;
+    padding: 2px;
+    background-color: #ffffff;
+}
+
+@media print {
+    .pagebreak {
+        break-before: always;
+    }
+
+    /* page-break-after works, as well */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #3399ff !important;
+}
+
+h1 {
+    counter-reset: h2;
+}
+
+h2 {
+    counter-reset: h3;
+}
+
+h3 {
+    counter-reset: h4;
+}
+
+h4 {
+    counter-reset: h5;
+}
+
+/** put counter result into headings */
+h2:before {
+    counter-increment: h2;
+    content: counter(h2) "\00a0\00a0\00a0" !important;
+    display: inline !important;
+}
+
+h3:before {
+    counter-increment: h3;
+    content: counter(h2) "." counter(h3) "\00a0\00a0\00a0" !important;
+    display: inline !important;
+}
+
+h4:before {
+    counter-increment: h4;
+    content: counter(h2) "." counter(h3) "." counter(h4) "\00a0\00a0\00a0" !important;
+    display: inline !important;
+}
+
+h5:before {
+    counter-increment: h5;
+    content: counter(h2) "." counter(h3) "." counter(h4) "." counter(h5) "\00a0\00a0\00a0" !important;
+    display: inline !important;
+}
+
+/* ------------------------ */
+/* [[_TOC_]]                */
+.toc-container {
+    border: 1px solid gray;
+}
+
+.toc-container>ul {
+    list-style-type: none;
+}
+
+.toc-container>ul li {
+    position: relative;
+}
+
+.toc-container>ul li::before {
+    counter-increment: section;
+}
+
+.toc-container>ul ul li::before {
+    content: counters(section, ".") "\00a0\00a0\00a0";
+}
+
+.toc-container>ul ul {
+    counter-reset: section;
+    list-style-type: none;
+}
+
+table,
+td,
+th {
+    border: 1px solid #3399ff;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+td {
+    font-size: 80%;
+}
+
+.candidates {
+    color:#042d57;
+}
