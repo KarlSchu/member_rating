@@ -1,7 +1,11 @@
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
+# # -*- coding: utf-8 -*-
 r"""
 Reads the election data from a xlsx file and creates sorted list of candidates.
 KarlSchu, 2025
+
+pyinstaller --onefile --windowed --icon=a.ico election.py 
+pyinstaller --onefile --windowed election.py -o dist --add-data "style.css;." --add-data "NachwahlProzedere.md;." 
 """
 from datetime import datetime as dt
 from io import StringIO
